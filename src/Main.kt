@@ -1,15 +1,13 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val name = "Kotlin"
-    val projectName = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
-
-    for (i in 1..6) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
-    }
+    val elodaniel = Elo(10, 20,true)
+    println("elo daniel avant match : ${elodaniel.calculEloJoueur()}")
+    println("elo opp" +
+            "daniel avant match : ${elodaniel.calculEloOpposant()}")
+    println("daneiel a gagné")
+    elodaniel.calculEloJoueur()
+    elodaniel.calculEloOpposant()
+    println("elo daniel apres match: ${elodaniel.calculEloOpposant()}")
+    println("elo opposant de daniel apres match: ${elodaniel.calculEloOpposant()}")
 }

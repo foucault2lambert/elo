@@ -1,29 +1,43 @@
 import kotlin.math.pow
 
 class Elo {
-    private var elo1: Int
-    private var elo2: Int
-    private var resultEloP1: Int
-    private var resultEloP2: Int
+    private var eloJoueur: Int
+    private var eloOpposant: Int
+    private var victoire : Boolean
 
-    constructor(p1: Int, p2: Int) {
-        elo1 = p1
-        elo2 = p2
-        resultEloP1 = 0
-        resultEloP2 = 0
+
+    constructor(eloJoueur: Int, eloOpposant: Int, victoiree: Boolean) {
+        this.eloJoueur = eloJoueur
+        this.eloOpposant = eloOpposant
+        this.victoire  = victoiree
+
     }
-    fun  calculElo1() : Int{
-        this.resultEloP1 = 1 - (2.toDouble().pow(elo1/100).toInt()) / (2.toDouble().pow(elo1/100).toInt()+2.toDouble().pow(elo2/100).toInt())
-        return resultEloP1
+    fun getEloJoueur(): Int {
+        return eloJoueur
     }
-    fun  calculElo2() : Int{
-        this.resultEloP2 = 1 - (2.toDouble().pow(elo2/100).toInt()) / (2.toDouble().pow(elo1/100).toInt()+2.toDouble().pow(elo2/100).toInt())
-        return resultEloP2
+    fun getEloOpposant(): Int {
+        return eloOpposant
     }
-    fun getresultEloP1(): Int {
-        return resultEloP1
+    fun  calculEloJoueur() : Int{
+        if(!this.victoire){
+            this.eloJoueur = 1 - (2.toDouble().pow(eloJoueur/100).toInt()) / (2.toDouble().pow(eloJoueur/100).toInt()+2.toDouble().pow(eloOpposant/100).toInt())
+            println("testcalculeloJoueurDefaite")
+        }
+        else{
+            this.eloJoueur = 1 + (2.toDouble().pow(eloJoueur/100).toInt()) / (2.toDouble().pow(eloJoueur/100).toInt()+2.toDouble().pow(eloOpposant/100).toInt())
+            println("testcalculeloJoueurVictoire")
+        }
+        return this.eloJoueur
     }
-    fun getresultEloP2(): Int {
-        return resultEloP2
+    fun  calculEloOpposant() : Int{
+        if(this.victoire){
+            this.eloOpposant = 1 - (2.toDouble().pow(eloJoueur/100).toInt()) / (2.toDouble().pow(eloJoueur/100).toInt()+2.toDouble().pow(eloOpposant/100).toInt())
+        }
+        else{
+            this.eloOpposant = 1 + (2.toDouble().pow(eloJoueur/100).toInt()) / (2.toDouble().pow(eloJoueur/100).toInt()+2.toDouble().pow(eloOpposant/100).toInt())
+        }
+        return this.eloOpposant
     }
+
 }
+
