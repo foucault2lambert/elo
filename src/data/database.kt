@@ -2,27 +2,60 @@ package data
 
 import java.sql.DriverManager
 import java.sql.ResultSet
+import java.sql.SQLException
 
 class Database(dbName: String) {
     val connection = DriverManager.getConnection("jdbc:sqlite:$dbName.db")
 
-    private fun select(query:String): ResultSet {
+    private fun select(query: String): ResultSet {
         try {
             val stmt = connection.createStatement()
             return stmt.executeQuery(query)
         } finally {
-
         }
     }
 
     fun getPlayerByName(playerName: String): Player? {
-        var res: ResultSet = select("SELECT * FROM PLAYER WHERE name='$playerName' LIMIT 1")
-        return Player(
-            res.getString("name"),
-            res.getInt("elo").toLong()
-        )
+        val res: ResultSet = select("SELECT * FROM PLAYER WHERE name='$playerName' LIMIT 1")
+
+        return try {
+            Player(
+                res.getString("name"),
+                res.getInt("elo").toLong()
+            )
+        } catch (e: NullPointerException) {
+            null
+        }
     }
 
-    fun close() =  connection.close()
+    fun getMatches(): List<Match> {
+        val query: String = "SELECT GAMES.DATE,\n" +
+                "       P1.name    AS playerA,\n" +
+                "       P2.name    AS playerB,\n" +
+                "       P1.elo     AS playerA_elo,\n" +
+                "       P2.elo     AS playerB_elo,\n" +
+                "       R1.balance AS balance_playerA,\n" +
+                "       R2.balance AS balance_playerB\n" +
+                "FROM GAMES\n" +
+                "         JOIN\n" +
+                "     RESULTS R1 ON GAMES.id = R1.id_game\n" +
+                "         JOIN\n" +
+                "     RESULTS R2 ON GAMES.id = R2.id_game AND R1.player < R2.player\n" +
+                "         JOIN\n" +
+                "     PLAYER P1 ON R1.player = P1.id\n" +
+                "         JOIN\n" +
+                "     PLAYER P2 ON R2.player = P2.id\n" +
+                "ORDER BY GAMES.DATE"
+        val res: ResultSet = select(query)
+
+        val matchList = mutableListOf<Match>()
+
+        while (res.next()) {
+            matchList.add(Match(res))
+        }
+        return matchList
+    }
+
+    fun close() = connection.close()
 
 }
