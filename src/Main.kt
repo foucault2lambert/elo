@@ -1,7 +1,7 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val elodaniel = Elo(10, 200,true)
+    val elodaniel = Match(10, 200,true)
 
     println("elo daniel avant match : ${elodaniel.getEloJoueur()}")
     println("elo opp" + "daniel avant match : ${elodaniel.getEloOpposant()}")

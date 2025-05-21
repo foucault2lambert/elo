@@ -1,6 +1,6 @@
 import kotlin.math.pow
 
-class Elo {
+class Match {
     private var eloJoueur: Int
     private var eloOpposant: Int
     private var victoire: Boolean
@@ -9,10 +9,10 @@ class Elo {
     private  var newEloJoueur: Int
 
 
-    constructor(eloJoueur: Int, eloOpposant: Int, victoiree: Boolean) {
-        this.eloJoueur = eloJoueur
-        this.eloOpposant = eloOpposant
-        this.victoire = victoiree
+    constructor(joueur1: Int, joueur2 : Int, victoireDuPremierJoueur: Boolean) {
+        this.eloJoueur = joueur1
+        this.eloOpposant = joueur2
+        this.victoire = victoireDuPremierJoueur
         this.kFacteur = 40
         this.newEloOpposant = eloOpposant
         this.newEloJoueur = eloOpposant
