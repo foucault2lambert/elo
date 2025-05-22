@@ -15,4 +15,14 @@ class DatabasePlayerTest {
         assertEquals(3400, playerTest.elo)
     }
 
+    @Test
+    fun operatorOverloading(){
+        val player2 = Player("Magnus Carlsen", 2837)
+        val player3 = playerTest
+
+        assertTrue(player2 < playerTest)
+        assertFalse(playerTest == player2)
+        assertTrue(player3 == playerTest)
+    }
+
 }
