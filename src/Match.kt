@@ -1,24 +1,25 @@
+import data.Player
 import kotlin.math.pow
 
 class Match {
-    private var eloJoueur: Int
-    private var eloOpposant: Int
+    private var eloJoueur: Long
+    private var eloOpposant: Long
     private var victoire: Boolean
     private var kFacteur: Int
-    private  var newEloOpposant: Int
-    private  var newEloJoueur: Int
-    private  var deltaElo: Int = 0
+    private  var newEloOpposant: Long
+    private  var newEloJoueur: Long
+    private  var deltaElo: Long = 0
 
 
-    constructor(joueur1: Int, joueur2 : Int, victoireDuPremierJoueur: Boolean) {
-        this.eloJoueur = joueur1
-        this.eloOpposant = joueur2
+    constructor(joueur1: Player?, joueur2 : Player?, victoireDuPremierJoueur: Boolean) {
+        this.eloJoueur = joueur1!!.elo
+        this.eloOpposant = joueur2!!.elo
         this.victoire = victoireDuPremierJoueur
         this.kFacteur = 40
         this.newEloOpposant = eloOpposant
         this.newEloJoueur = eloOpposant
     }
-    fun getDeltaElo(): Int {
+    fun getDeltaElo(): Long {
         this.deltaElo = this.newEloOpposant - this.eloOpposant
         return this.deltaElo
     }
@@ -27,15 +28,15 @@ class Match {
         this.kFacteur = facteur
     }
 
-    fun getEloJoueur(): Int {
+    fun getEloJoueur(): Long {
         return eloJoueur
     }
 
-    fun getEloOpposant(): Int {
+    fun getEloOpposant(): Long {
         return eloOpposant
     }
 
-    fun calculEloJoueur(): Int {//calcul l'elo du "joueur" apres match
+    fun calculEloJoueur(): Long {//calcul l'elo du "joueur" apres match
         val expectedScore = 1 / (1 + 10.0.pow((this.eloOpposant - this.eloJoueur) / 400.0))
         var result = 0
         if (victoire){
@@ -43,11 +44,11 @@ class Match {
         }else{
             result = 0
         }
-        this.newEloJoueur = (this.eloJoueur + kFacteur * (result - expectedScore)).toInt()
+        this.newEloJoueur = (this.eloJoueur + kFacteur * (result - expectedScore)).toLong()
         //println("expectedScoreJ: $expectedScore")
         return this.newEloJoueur
     }
-    fun calculEloOpposant(): Int {
+    fun calculEloOpposant(): Long {
         val expectedScore = 1 / (1 + 10.0.pow((this.eloOpposant - this.eloJoueur) / 400.0))
         var result = 0
         if (victoire){
@@ -55,7 +56,7 @@ class Match {
         }else{
             result = 1
         }
-        this.newEloOpposant = (this.eloOpposant + kFacteur * (result - expectedScore)).toInt()
+        this.newEloOpposant = (this.eloOpposant + kFacteur * (result - expectedScore)).toLong()
         //println("expectedScoreJ: $expectedScore")
         return this.newEloOpposant
 

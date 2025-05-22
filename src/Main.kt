@@ -7,7 +7,7 @@ fun main() {
     println(database.getPlayerByName("Foucault"))
 
     database.close()
-    val elodaniel = Match(10, 200,true)
+    val elodaniel = Match(database.getPlayerByName("Foucault"), database.getPlayerByName("Simon"),true)
     println("elo daniel avant match : ${elodaniel.getEloJoueur()}")
     println("elo opp" + "daniel avant match : ${elodaniel.getEloOpposant()}")
     println("daneiel a gagné")
