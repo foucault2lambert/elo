@@ -1,6 +1,12 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import data.Database
+
 fun main() {
+
+    val database = Database("src/data/database")
+
+    println(database.getPlayerByName("Foucault"))
+
+    database.close()
     val elodaniel = Match(10, 200,true)
 
     println("elo daniel avant match : ${elodaniel.getEloJoueur()}")
