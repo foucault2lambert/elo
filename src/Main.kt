@@ -4,16 +4,15 @@ fun main() {
 
     val database = Database("src/data/database")
 
-    println(database.getPlayerByName("Foucault"))
 
+    val MatchFoucaultSimon = Match(database.getPlayerByName("Foucault"), database.getPlayerByName("Simon"),false)
+    println("elo Foucault avant match : ${MatchFoucaultSimon.getEloJoueur()}")
+    println("elo opp" + "Foucault avant match : ${MatchFoucaultSimon.getEloOpposant()}")
+    println("Foucault a perdu")
+    MatchFoucaultSimon.calculEloJoueur()
+    MatchFoucaultSimon.calculEloOpposant()
+    println("elo Foucaut apres match: ${MatchFoucaultSimon.calculEloJoueur()}")
+    println("elo Simon apres match: ${MatchFoucaultSimon.calculEloOpposant()}")
+    println("la diff d'elo est : ${MatchFoucaultSimon.getDeltaElo()}")
     database.close()
-    val elodaniel = Match(database.getPlayerByName("Foucault"), database.getPlayerByName("Simon"),true)
-    println("elo daniel avant match : ${elodaniel.getEloJoueur()}")
-    println("elo opp" + "daniel avant match : ${elodaniel.getEloOpposant()}")
-    println("daneiel a gagné")
-    elodaniel.calculEloJoueur()
-    elodaniel.calculEloOpposant()
-    println("elo daniel apres match: ${elodaniel.calculEloJoueur()}")
-    println("elo opposant de daniel apres match: ${elodaniel.calculEloOpposant()}")
-    println("la diff d'elo est : ${elodaniel.getDeltaElo()}")
 }
