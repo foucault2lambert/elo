@@ -21,6 +21,8 @@ class Match(val players: List<Player>, val date: Date, val diffs: List<Int>) {
         )
     )
 
+    // TODO: add constructor that create from a [Match] class
+
     fun getWinner(): Player = if (diffs[0] > 0) players[0] else  players[1]
 
     override fun toString(): String {
