@@ -3,8 +3,6 @@ import data.Database
 fun main() {
 
     val database = Database("src/data/database")
-
-
     val MatchFoucaultSimon = Match(database.getPlayerByName("Foucault"), database.getPlayerByName("Simon"),false)
     println("elo Foucault avant match : ${MatchFoucaultSimon.getEloJoueur()}")
     println("elo opp" + "Foucault avant match : ${MatchFoucaultSimon.getEloOpposant()}")
