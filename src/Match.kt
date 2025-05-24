@@ -9,6 +9,8 @@ class Match {
     private  var newEloOpposant: Long
     private  var newEloJoueur: Long
     private  var deltaElo: Long
+    private var Joueur: Player
+    private var Opposant: Player
 
 
     constructor(joueur1: Player?, joueur2 : Player?, victoireDuPremierJoueur: Boolean) {
@@ -19,6 +21,15 @@ class Match {
         this.newEloOpposant = eloOpposant
         this.newEloJoueur = eloOpposant
         this.deltaElo = 0
+        this.Joueur = joueur1
+        this.Opposant = joueur2
+    }
+    fun getWinner() : Player {
+        if(victoire){
+            return this.Joueur
+        }else{
+            return this.Opposant
+        }
     }
     fun getDeltaElo(): Long {
         this.deltaElo = (this.newEloOpposant - this.eloOpposant).toLong()

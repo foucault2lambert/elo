@@ -45,7 +45,7 @@ class testMatch {
             result = 0
         }
         this.newEloJoueur = (this.eloJoueur + kFacteur * (result - expectedScore)).toInt()
-        //println("expectedScoreJ: $expectedScore")
+        println("expectedScoreJ: $expectedScore")
         return this.newEloJoueur
     }
     fun calculEloOpposant(): Int {
@@ -57,7 +57,7 @@ class testMatch {
             result = 1
         }
         this.newEloOpposant = (this.eloOpposant + kFacteur * (result - expectedScore)).toInt()
-        //println("expectedScoreJ: $expectedScore")
+        println("expectedScoreJ: $expectedScore")
         return this.newEloOpposant
 
     }
