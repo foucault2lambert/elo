@@ -12,7 +12,6 @@ class Match {
     private var Joueur: Player
     private var Opposant: Player
 
-
     constructor(joueur1: Player?, joueur2 : Player?, victoireDuPremierJoueur: Boolean) {
         this.eloJoueur = joueur1!!.elo
         this.eloOpposant = joueur2!!.elo
@@ -72,5 +71,5 @@ class Match {
         //println("expectedScoreJ: $expectedScore")
         return this.newEloOpposant
 
-        }
+    }
 }
