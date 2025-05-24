@@ -38,7 +38,7 @@ class testMatch {
 
     fun calculEloJoueur(): Int {//calcul l'elo du "joueur" apres match
         val expectedScore = 1 / (1 + 10.0.pow((this.eloOpposant - this.eloJoueur) / 400.0))
-        var result = 0
+        var result: Int
         if (victoire){
             result = 1
         }else{
@@ -49,8 +49,8 @@ class testMatch {
         return this.newEloJoueur
     }
     fun calculEloOpposant(): Int {
-        val expectedScore = 1 / (1 + 10.0.pow((this.eloOpposant - this.eloJoueur) / 400.0))
-        var result = 0
+        val expectedScore = 1 / (1 + 10.0.pow((this.eloJoueur - this.eloOpposant) / 400.0))
+        var result: Int
         if (victoire){
             result = 0
         }else{

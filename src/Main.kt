@@ -13,5 +13,10 @@ fun main() {
     println("elo Simon apres match: ${MatchFoucaultSimon.calculEloOpposant()}")
     println("la diff d'elo est : ${MatchFoucaultSimon.getDeltaElo()}")
     database.close()*/
-    val
+    val TEST = testMatch(10,1000,true)
+    println(TEST.getEloJoueur())
+    println(TEST.getEloOpposant())
+    println(TEST.calculEloJoueur())
+    println(TEST.calculEloOpposant())
+    println(TEST.getDeltaElo())
 }

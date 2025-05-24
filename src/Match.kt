@@ -60,7 +60,7 @@ class Match {
         return this.newEloJoueur
     }
     fun calculEloOpposant(): Long {
-        val expectedScore = 1 / (1 + 10.0.pow((this.eloOpposant - this.eloJoueur) / 400.0))
+        val expectedScore = 1 / (1 + 10.0.pow((this.eloJoueur - this.eloOpposant) / 400.0))
         var result = 0
         if (victoire){
             result = 0
